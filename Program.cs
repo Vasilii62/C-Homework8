@@ -245,7 +245,7 @@ Console.WriteLine();
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1)
 */
-
+/*
 Console.WriteLine($"\nEnter the size of the 3D pattern:");
 int x = InputNumbers("Enter x: ");
 int y = InputNumbers("Enter y: ");
@@ -314,3 +314,52 @@ void CreateArray(int[,,] array3D)
     }
   }
 }
+*/
+/*
+Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+Например, на выходе получается вот такой массив:
+01 02 03 04
+12 13 14 05
+11 16 15 06
+10 09 08 07
+*/
+Console.WriteLine($"\nEnter the size of the matrix: ");
+int user_matrix = Convert.ToInt32(Console.ReadLine());
+int[,] squareMatrix = new int[user_matrix, user_matrix];
+
+int temp = 1;
+int i = 0;
+int j = 0;
+Console.WriteLine();
+
+while (temp <= squareMatrix.GetLength(0) * squareMatrix.GetLength(1))
+{
+  squareMatrix[i, j] = temp;
+  temp++;
+  if (i <= j + 1 && i + j < squareMatrix.GetLength(1) - 1)
+    j++;
+  else if (i < j && i + j >= squareMatrix.GetLength(0) - 1)
+    i++;
+  else if (i >= j && i + j > squareMatrix.GetLength(1) - 1)
+    j--;
+  else
+    i--;
+}
+
+PrintArray(squareMatrix);
+
+void PrintArray (int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      if (array[i,j] / 10 <= 0)
+      Console.Write($"0{array[i,j]} ");
+
+      else Console.Write($"{array[i,j]} ");
+    }
+    Console.WriteLine();
+  }
+}
+Console.WriteLine();
